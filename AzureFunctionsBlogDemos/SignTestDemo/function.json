@@ -1,0 +1,29 @@
+{
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll",
+  "entryPoint": "AzureFunctionsBlogDemos.SignTest.SignTestDemo.Run",
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "function",
+      "direction": "in",
+      "methods": [
+        "post"
+      ],
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson"
+    },
+    {
+      "direction": "out",
+      "name": "$return",
+      "type": "http"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputTable",
+      "tableName": "SignTest",
+      "type": "table"
+    }
+  ]
+}

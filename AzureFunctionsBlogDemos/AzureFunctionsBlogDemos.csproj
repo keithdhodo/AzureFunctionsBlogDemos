@@ -83,6 +83,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
@@ -116,6 +117,8 @@
     <Content Include="HelloWorld\sample.dat" />
     <Content Include="QuickUnion\function.json" />
     <Content Include="QuickUnion\readme.md" />
+    <Content Include="SignTestDemo\function.json" />
+    <Content Include="SignTestDemo\readme.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -126,6 +129,8 @@
     <Content Include="WeightedQuickUnionWithPathCompression\readme.md" />
     <Compile Include="QuickUnion\QuickUnion.cs" />
     <Compile Include="Shared\Arrays.cs" />
+    <Compile Include="Shared\SignTest.cs" />
+    <Compile Include="SignTestDemo\SignTestDemo.cs" />
     <Compile Include="WeightedQuickUnionWithPathCompression\WeightedQuickUnionWithPathCompression.cs" />
     <Content Include="WeightedQuickUnionWithPathCompression\sample.dat" />
   </ItemGroup>
