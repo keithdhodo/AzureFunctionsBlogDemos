@@ -114,6 +114,8 @@
     <Content Include="HelloWorld\readme.md" />
     <Compile Include="HelloWorld\run.cs" />
     <Content Include="HelloWorld\sample.dat" />
+    <Content Include="QuickUnion\function.json" />
+    <Content Include="QuickUnion\readme.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -122,8 +124,9 @@
     </None>
     <Content Include="WeightedQuickUnionWithPathCompression\function.json" />
     <Content Include="WeightedQuickUnionWithPathCompression\readme.md" />
+    <Compile Include="QuickUnion\QuickUnion.cs" />
     <Compile Include="Shared\Arrays.cs" />
-    <Compile Include="WeightedQuickUnionWithPathCompression\run.cs" />
+    <Compile Include="WeightedQuickUnionWithPathCompression\WeightedQuickUnionWithPathCompression.cs" />
     <Content Include="WeightedQuickUnionWithPathCompression\sample.dat" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +135,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
