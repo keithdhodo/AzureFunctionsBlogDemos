@@ -1,4 +1,6 @@
 {
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll",
+  "entryPoint": "AzureFunctionsBlogDemos.HelloWorld.Run",
   "disabled": false,
   "bindings": [
     {
