@@ -7,19 +7,19 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AzureFunctionsBlogDemos.Sorting
+namespace AzureFunctionsBlogDemos.Merging
 {
     public class QuickUnion
     {
         public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log,
-            IAsyncCollector<Arrays> outputTable)
+            IAsyncCollector<Array> outputTable)
         {
 
             log.Info("QuickUnionTrigger processed a request.");
 
             // Parse request input
             string jsonContent = await req.Content.ReadAsStringAsync();
-            var quickFind = JsonConvert.DeserializeObject<Arrays>(jsonContent);
+            var quickFind = JsonConvert.DeserializeObject<Array>(jsonContent);
             log.Info($"Inputs: {quickFind.NumberToUnionFrom.ToString()}, {quickFind.NumberToUnionTo.ToString()}");
 
             if (quickFind.NumberToUnionFrom.Length != quickFind.NumberToUnionTo.Length)
@@ -33,7 +33,7 @@ namespace AzureFunctionsBlogDemos.Sorting
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Arrays.QuickUnion(quickFind);
+            Array.QuickUnion(quickFind);
 
             stopwatch.Stop();
             quickFind.Runtime = stopwatch.Elapsed;

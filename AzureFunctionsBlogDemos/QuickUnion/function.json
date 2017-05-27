@@ -1,7 +1,4 @@
 ﻿{
-  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll",
-  "entryPoint": "AzureFunctionsBlogDemos.Sorting.QuickUnion.Run",
-  "disabled": false,
   "bindings": [
     {
       "authLevel": "function",
@@ -25,5 +22,8 @@
       "tableName": "Sorting",
       "type": "table"
     }
-  ]
+  ],
+  "disabled": false,
+  "entryPoint": "AzureFunctionsBlogDemos.Merging.QuickUnion.Run",
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll"
 }

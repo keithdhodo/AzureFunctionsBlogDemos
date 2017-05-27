@@ -1,4 +1,4 @@
-{
+﻿{
   "bindings": [
     {
       "authLevel": "function",
@@ -14,16 +14,19 @@
       "direction": "out",
       "name": "$return",
       "type": "http"
-    },
-    {
-      "connection": "AzureWebJobsStorage",
-      "direction": "out",
-      "name": "outputTable",
-      "tableName": "SignTest",
-      "type": "table"
     }
+    //,
+    //{
+    //  "accessRights": "manage",
+    //  "connection": "AzureWebJobsServiceBus",
+    //  "direction": "out",
+    //  "name": "myQueueItem",
+    //  "subscriptionName": "QuickUnion",
+    //  "topicName": "AlgorithmsMerge",
+    //  "type": "serviceBus"
+    //}
   ],
   "disabled": false,
-  "entryPoint": "AzureFunctionsBlogDemos.SignTest.SignTestDemo.Run",
+  "entryPoint": "AzureFunctionsBlogDemos.Merging.MergeTrigger.Run",
   "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll"
 }

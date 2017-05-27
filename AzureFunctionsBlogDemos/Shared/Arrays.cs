@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 
-namespace AzureFunctionsBlogDemos.Sorting
+namespace AzureFunctionsBlogDemos.Merging
 {
     /// <summary>
     /// QuickFindInput takes an array of integers and then uses the two other arrays to union
     /// </summary>
-    public class Arrays
+    public class Array
     {
         public int[] NumberToUnionFrom { get; set; }
         public int[] NumberToUnionTo { get; set; }
@@ -19,7 +19,7 @@ namespace AzureFunctionsBlogDemos.Sorting
         public string PartitionKey { get; set; }
         public string RowKey { get; set; }
 
-        public static void QuickFind(Arrays quickFind)
+        public static void QuickFind(Array quickFind)
         {
             int max = 0;
             max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
@@ -47,7 +47,7 @@ namespace AzureFunctionsBlogDemos.Sorting
             }
         }
 
-        public static void QuickUnion(Arrays quickFind)
+        public static void QuickUnion(Array quickFind)
         {
             int max = 0;
             max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
@@ -73,7 +73,7 @@ namespace AzureFunctionsBlogDemos.Sorting
             }
         }
 
-        public static void WeightedQuickUnion(Arrays quickFind)
+        public static void WeightedQuickUnion(Array quickFind)
         {
             int max = 0;
             max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
@@ -111,7 +111,7 @@ namespace AzureFunctionsBlogDemos.Sorting
             }
         }
 
-        public static void WeightedQuickUnionWithPathCompression(Arrays quickFind)
+        public static void WeightedQuickUnionWithPathCompression(Array quickFind)
         {
             int max = 0;
             max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();

@@ -8,20 +8,20 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AzureFunctionsBlogDemos.Sorting
+namespace AzureFunctionsBlogDemos.Merging
 {
     public class WeightedQuickUnionWithPathCompression
     {
 
         public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log,
-            IAsyncCollector<Arrays> outputTable)
+            IAsyncCollector<Array> outputTable)
         {
 
             log.Info("WeightedQuickUnionWithPathCompressionTrigger processed a request.");
 
             // Parse request input
             string jsonContent = await req.Content.ReadAsStringAsync();
-            var weightedQuickUnionWithPathCompression = JsonConvert.DeserializeObject<Arrays>(jsonContent);
+            var weightedQuickUnionWithPathCompression = JsonConvert.DeserializeObject<Array>(jsonContent);
             log.Info($"Inputs: {weightedQuickUnionWithPathCompression.NumberToUnionFrom.Select(s => s.ToString())}, {weightedQuickUnionWithPathCompression.NumberToUnionTo.Select(s => s.ToString())}");
 
             if (weightedQuickUnionWithPathCompression.NumberToUnionFrom.Length != weightedQuickUnionWithPathCompression.NumberToUnionTo.Length)
@@ -35,7 +35,7 @@ namespace AzureFunctionsBlogDemos.Sorting
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Arrays.WeightedQuickUnionWithPathCompression(weightedQuickUnionWithPathCompression);
+            Array.WeightedQuickUnionWithPathCompression(weightedQuickUnionWithPathCompression);
 
             stopwatch.Stop();
             weightedQuickUnionWithPathCompression.Runtime = stopwatch.Elapsed;
