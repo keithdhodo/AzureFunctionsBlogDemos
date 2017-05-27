@@ -1,0 +1,23 @@
+﻿{
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "topicName": "algorithmsmerge",
+      "subscriptionName": "WeightedQuickUnionWithPathCompression",
+      "connection": "AzureWebJobsServiceBus",
+      "accessRights": "manage",
+      "type": "serviceBusTrigger",
+      "direction": "in"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputTable",
+      "tableName": "Merging",
+      "type": "table"
+    }
+  ],
+  "disabled": false,
+  "entryPoint": "AzureFunctionsBlogDemos.Merging.WQUWPCTopicTrigger.Run",
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll"
+}

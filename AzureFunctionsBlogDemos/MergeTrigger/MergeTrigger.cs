@@ -83,7 +83,7 @@ namespace AzureFunctionsBlogDemos.Merging
             TopicClient Client =
             TopicClient.CreateFromConnectionString(connectionString, topicName);
 
-            Client.Send(new BrokeredMessage());
+            Client.Send(new BrokeredMessage(input));
         }
     }
 }

@@ -124,17 +124,20 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="WQUWPCTopicTrigger\readme.md" />
     <None Include="MergeTrigger\readme.md" />
     <Content Include="packages.config" />
     <Content Include="HelloWorld\function.json" />
     <Content Include="HelloWorld\readme.md" />
     <Compile Include="HelloWorld\run.cs" />
     <Content Include="HelloWorld\sample.dat" />
+    <None Include="QuickUnionTopicTrigger\readme.md" />
     <Content Include="QuickUnion\function.json" />
     <Content Include="QuickUnion\readme.md" />
     <Content Include="SignTestDemo\function.json" />
     <Content Include="SignTestDemo\readme.md" />
     <Content Include="MergeTrigger\function.json" />
+    <Content Include="QuickUnionTopicTrigger\function.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,12 +147,15 @@
     <Content Include="WeightedQuickUnionWithPathCompression\function.json" />
     <Content Include="WeightedQuickUnionWithPathCompression\readme.md" />
     <Compile Include="MergeTrigger\MergeTrigger.cs" />
+    <Compile Include="QuickUnionTopicTrigger\QuickUnionTopicTrigger.cs" />
     <Compile Include="QuickUnion\QuickUnion.cs" />
     <Compile Include="Shared\Arrays.cs" />
     <Compile Include="Shared\SignTest.cs" />
     <Compile Include="SignTestDemo\SignTestDemo.cs" />
+    <Compile Include="WQUWPCTopicTrigger\WQUWPCTopicTrigger.cs" />
     <Compile Include="WeightedQuickUnionWithPathCompression\WeightedQuickUnionWithPathCompression.cs" />
     <Content Include="WeightedQuickUnionWithPathCompression\sample.dat" />
+    <Content Include="WQUWPCTopicTrigger\function.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
