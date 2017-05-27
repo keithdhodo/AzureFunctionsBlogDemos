@@ -15,16 +15,6 @@
       "name": "$return",
       "type": "http"
     }
-    //,
-    //{
-    //  "accessRights": "manage",
-    //  "connection": "AzureWebJobsServiceBus",
-    //  "direction": "out",
-    //  "name": "myQueueItem",
-    //  "subscriptionName": "QuickUnion",
-    //  "topicName": "AlgorithmsMerge",
-    //  "type": "serviceBus"
-    //}
   ],
   "disabled": false,
   "entryPoint": "AzureFunctionsBlogDemos.Merging.MergeTrigger.Run",
