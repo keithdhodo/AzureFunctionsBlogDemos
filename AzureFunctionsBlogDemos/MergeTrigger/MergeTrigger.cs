@@ -66,7 +66,7 @@ namespace AzureFunctionsBlogDemos.Merging
                 namespaceManager.CreateTopic(td);
             }
 
-            List<string> paths = new List<string>{ "QuickUnion", "WeightedQuickUnionWithPathCompression" };
+            List<string> paths = new List<string> { "QuickUnion", "WeightedQuickUnionWithPathCompression", "QuickFind" };
 
             foreach (string path in paths)
             {
