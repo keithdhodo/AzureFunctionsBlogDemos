@@ -1,12 +1,7 @@
 ﻿using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace AzureFunctionsBlogDemos.Merging
 {
@@ -15,7 +10,6 @@ namespace AzureFunctionsBlogDemos.Merging
 
         public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<Array> outputTable)
         {
-
             log.Info("WQUWPCTopicTrigger processed a request.");
 
             Stopwatch stopwatch = new Stopwatch();
@@ -27,7 +21,7 @@ namespace AzureFunctionsBlogDemos.Merging
             myQueueItem.Runtime = stopwatch.Elapsed;
 
             myQueueItem.AlgorithmName = "WeightedQuickUnionWithPathCompression";
-            myQueueItem.PartitionKey = "Sorting";
+            myQueueItem.PartitionKey = "WeightedQuickUnionWithPathCompression";
             myQueueItem.RowKey = Guid.NewGuid().ToString();
 
             outputTable.AddAsync(myQueueItem);
