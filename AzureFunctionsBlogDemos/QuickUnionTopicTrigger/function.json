@@ -15,6 +15,13 @@
       "name": "outputTable",
       "tableName": "Merging",
       "type": "table"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputBlob",
+      "path": "Merging/{WQUWPCTopicTrigger}.txt",
+      "type": "blob"
     }
   ],
   "disabled": false,

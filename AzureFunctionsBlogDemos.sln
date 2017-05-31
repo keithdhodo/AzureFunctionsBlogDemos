@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionsBlogDemos", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionsBlogDemosTests", "AzureFunctionsBlogDemosTests\AzureFunctionsBlogDemosTests.csproj", "{19ED7D40-EE57-49E6-81AE-940B560B49EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionsBlogDemosConsoleTest", "AzureFunctionsBlogDemosConsoleTest\AzureFunctionsBlogDemosConsoleTest.csproj", "{6BC9EA47-38B1-499F-99C3-4D42A032FBBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{19ED7D40-EE57-49E6-81AE-940B560B49EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19ED7D40-EE57-49E6-81AE-940B560B49EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19ED7D40-EE57-49E6-81AE-940B560B49EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC9EA47-38B1-499F-99C3-4D42A032FBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC9EA47-38B1-499F-99C3-4D42A032FBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC9EA47-38B1-499F-99C3-4D42A032FBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC9EA47-38B1-499F-99C3-4D42A032FBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

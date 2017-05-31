@@ -7,7 +7,6 @@ namespace AzureFunctionsBlogDemos.Merging
 {
     public class MergePerformance
     {
-        public string MergeOutput { get; set; }
         public TimeSpan Runtime { get; set; }
 
         public string AlgorithmName { get; set; }

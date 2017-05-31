@@ -31,6 +31,7 @@ project.lock.json
 appsettings.json
 local.settings.json
 *settings.json
+secretappsettings.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
