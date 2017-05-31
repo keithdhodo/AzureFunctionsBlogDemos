@@ -146,8 +146,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="WeightedQuickUnionWithPathCompression\function.json" />
-    <Content Include="WeightedQuickUnionWithPathCompression\readme.md" />
     <Compile Include="MergeTrigger\MergeTrigger.cs" />
     <Compile Include="QuickUnionTopicTrigger\QuickUnionTopicTrigger.cs" />
     <Compile Include="Shared\Arrays.cs" />
