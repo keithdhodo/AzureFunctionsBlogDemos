@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "topicName": "algorithmsmerge",
+      "subscriptionName": "WeightedQuickUnion",
+      "connection": "AzureWebJobsServiceBus",
+      "accessRights": "manage",
+      "type": "serviceBusTrigger",
+      "direction": "in"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputTable",
+      "tableName": "Merging",
+      "type": "table"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputBlob",
+      "path": "merging/{WeightedQuickUnionTopicTrigger}.txt",
+      "type": "blob"
+    }
+  ],
+  "disabled": false,
+  "entryPoint": "AzureFunctionsBlogDemos.Merging.WeightedQuickUnionTopicTrigger.Run",
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll"
+}

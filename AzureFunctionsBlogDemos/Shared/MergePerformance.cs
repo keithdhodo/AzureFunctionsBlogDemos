@@ -11,6 +11,8 @@ namespace AzureFunctionsBlogDemos.Merging
 
         public string AlgorithmName { get; set; }
 
+        public int NumberOfElements { get; set; }
+
         public string PartitionKey { get; set; }
         public string RowKey { get; set; }
     }

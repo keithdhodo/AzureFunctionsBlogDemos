@@ -1,4 +1,4 @@
-﻿using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using System;
 using System.Diagnostics;
@@ -7,31 +7,31 @@ using System.Security.Cryptography;
 
 namespace AzureFunctionsBlogDemos.Merging
 {
-    public class QuickUnionTopicTrigger
+    public class WeightedQuickUnionTopicTrigger
     {
+
         public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable,
             IBinder binder)
         {
-            log.Info("QuickUnionTopicTrigger processed a request.");
+            log.Info("WeightedQuickUnionTopicTrigger processed a request.");
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickUnion);
+            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.WeightedQuickUnionWithPathCompression);
 
             stopwatch.Stop();
 
             var performance = new MergePerformance();
-
             performance.Runtime = stopwatch.Elapsed;
-            performance.AlgorithmName = "QuickUnion";
-            performance.PartitionKey = "QuickUnion";
+            performance.AlgorithmName = "WeightedQuickUnion";
+            performance.PartitionKey = "WeightedQuickUnion";
             performance.RowKey = Guid.NewGuid().ToString();
             performance.NumberOfElements = myQueueItem.Output.Length;
 
             outputTable.AddAsync(performance);
 
-            var blobPath = "merging" + "/" + "quickunion" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".txt";
+            var blobPath = "merging" + "/" + "weightedquickuniontopictrigger" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".txt";
 
             using (var outputBlob = binder.Bind<TextWriter>(
                 new BlobAttribute(blobPath)))

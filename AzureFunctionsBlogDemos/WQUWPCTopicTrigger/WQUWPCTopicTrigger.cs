@@ -27,6 +27,9 @@ namespace AzureFunctionsBlogDemos.Merging
             performance.AlgorithmName = "WeightedQuickUnionWithPathCompression";
             performance.PartitionKey = "WeightedQuickUnionWithPathCompression";
             performance.RowKey = Guid.NewGuid().ToString();
+            performance.NumberOfElements = myQueueItem.Output.Length;
+
+            outputTable.AddAsync(performance);
 
             var blobPath = "merging" + "/" + "wquwpctopictrigger" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".txt";
 

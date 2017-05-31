@@ -29,7 +29,7 @@ namespace HttpClientSample
             try
             {
                 // Create a new Array
-                int arraySize = 5000;
+                int arraySize = 25000;
                 var inputArray = new AzureFunctionsBlogDemos.Merging.Array();
                 inputArray.NumberToUnionFrom = CreateIntegers(arraySize);
                 inputArray.NumberToUnionTo = CreateIntegers(arraySize);
@@ -54,7 +54,7 @@ namespace HttpClientSample
             response.EnsureSuccessStatusCode();
 
             // return URI of the created resource.
-            return response.Headers.Location;
+            return response.RequestMessage.RequestUri;
         }
 
         private static int[] CreateIntegers(int input)

@@ -26,6 +26,9 @@ namespace AzureFunctionsBlogDemos.Merging
             performance.AlgorithmName = "QuickFind";
             performance.PartitionKey = "QuickFind";
             performance.RowKey = Guid.NewGuid().ToString();
+            performance.NumberOfElements = myQueueItem.Output.Length;
+
+            outputTable.AddAsync(performance);
 
             var blobPath = "merging" + "/" + "quickfind" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".txt";
 
