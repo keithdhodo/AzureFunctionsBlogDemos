@@ -8,23 +8,25 @@ namespace AzureFunctionsBlogDemos.Merging
     public class WQUWPCTopicTrigger
     {
 
-        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<Array> outputTable)
+        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable)
         {
             log.Info("WQUWPCTopicTrigger processed a request.");
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Array.WeightedQuickUnionWithPathCompression(myQueueItem);
+            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.WeightedQuickUnionWithPathCompression);
 
             stopwatch.Stop();
-            myQueueItem.Runtime = stopwatch.Elapsed;
 
-            myQueueItem.AlgorithmName = "WeightedQuickUnionWithPathCompression";
-            myQueueItem.PartitionKey = "WeightedQuickUnionWithPathCompression";
-            myQueueItem.RowKey = Guid.NewGuid().ToString();
+            var performance = new MergePerformance();
+            performance.Runtime = stopwatch.Elapsed;
+            performance.AlgorithmName = "WeightedQuickUnionWithPathCompression";
+            performance.PartitionKey = "WeightedQuickUnionWithPathCompression";
+            performance.RowKey = Guid.NewGuid().ToString();
+            performance.MergeOutput = string.Join(",", myQueueItem.Output);
 
-            outputTable.AddAsync(myQueueItem);
+            outputTable.AddAsync(performance);
         }
     }
 }

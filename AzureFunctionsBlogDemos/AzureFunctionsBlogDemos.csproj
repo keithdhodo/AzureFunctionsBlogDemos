@@ -154,6 +154,8 @@
     <Compile Include="QuickUnionTopicTrigger\QuickUnionTopicTrigger.cs" />
     <Compile Include="QuickUnion\QuickUnion.cs" />
     <Compile Include="Shared\Arrays.cs" />
+    <Compile Include="Shared\Enums.cs" />
+    <Compile Include="Shared\MergePerformance.cs" />
     <Compile Include="Shared\SignTest.cs" />
     <Compile Include="SignTestDemo\SignTestDemo.cs" />
     <Compile Include="WQUWPCTopicTrigger\WQUWPCTopicTrigger.cs" />

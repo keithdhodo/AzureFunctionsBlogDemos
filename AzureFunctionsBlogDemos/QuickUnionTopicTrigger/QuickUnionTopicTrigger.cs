@@ -7,23 +7,26 @@ namespace AzureFunctionsBlogDemos.Merging
 {
     public class QuickUnionTopicTrigger
     {
-        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<Array> outputTable)
+        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable)
         {
             log.Info("QuickUnionTopicTrigger processed a request.");
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Array.QuickUnion(myQueueItem);
+            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickUnion);
 
             stopwatch.Stop();
-            myQueueItem.Runtime = stopwatch.Elapsed;
 
-            myQueueItem.AlgorithmName = "QuickUnion";
-            myQueueItem.PartitionKey = "QuickUnion";
-            myQueueItem.RowKey = Guid.NewGuid().ToString();
+            var performance = new MergePerformance();
 
-            outputTable.AddAsync(myQueueItem);
+            performance.Runtime = stopwatch.Elapsed;
+            performance.AlgorithmName = "QuickUnion";
+            performance.PartitionKey = "QuickUnion";
+            performance.RowKey = Guid.NewGuid().ToString();
+            performance.MergeOutput = string.Join(",", myQueueItem.Output);
+
+            outputTable.AddAsync(performance);
         }
     }
 }

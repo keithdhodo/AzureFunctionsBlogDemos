@@ -7,23 +7,25 @@ namespace AzureFunctionsBlogDemos.Merging
 {
     public class QuickFindSBTopicTrigger
     {
-        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<Array> outputTable)
+        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable)
         {
             log.Info("QuickFindSBTopicTrigger processed a request.");
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Array.QuickFind(myQueueItem);
+            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickFind);
 
             stopwatch.Stop();
-            myQueueItem.Runtime = stopwatch.Elapsed;
 
-            myQueueItem.AlgorithmName = "QuickFind";
-            myQueueItem.PartitionKey = "QuickFind";
-            myQueueItem.RowKey = Guid.NewGuid().ToString();
+            var performance = new MergePerformance();
+            performance.Runtime = stopwatch.Elapsed;
+            performance.AlgorithmName = "QuickFind";
+            performance.PartitionKey = "QuickFind";
+            performance.RowKey = Guid.NewGuid().ToString();
+            performance.MergeOutput = string.Join(",", myQueueItem.Output);
 
-            outputTable.AddAsync(myQueueItem);
+            outputTable.AddAsync(performance);
         }
     }
 }

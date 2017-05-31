@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using static AzureFunctionsBlogDemos.Shared.Enums;
 
 namespace AzureFunctionsBlogDemos.Merging
 {
@@ -10,119 +11,111 @@ namespace AzureFunctionsBlogDemos.Merging
     {
         public int[] NumberToUnionFrom { get; set; }
         public int[] NumberToUnionTo { get; set; }
-        public int[] OutputArray { get; set; }
+        public int[] Output { get; set; }
 
-        public TimeSpan Runtime { get; set; }
-
-        public string AlgorithmName { get; set; }
-
-        public string PartitionKey { get; set; }
-        public string RowKey { get; set; }
-
-        public static void QuickFind(Array quickFind)
+        public static void Merge(Array input, MergeAlgorithms algorithmName)
         {
             int max = 0;
-            max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
+            max = input.NumberToUnionFrom.Max() > input.NumberToUnionTo.Max() ? input.NumberToUnionFrom.Max() : input.NumberToUnionTo.Max();
 
-            // setup the output array
-            quickFind.OutputArray = new int[max + 1];
-            for (int i = 0; i < quickFind.OutputArray.Length; i++)
+            // setup the Output array
+            input.Output = new int[max + 1];
+            for (int i = 0; i < input.Output.Length; i++)
             {
-                quickFind.OutputArray[i] = i;
+                input.Output[i] = i;
             }
 
+            switch(algorithmName)
+            {
+                case MergeAlgorithms.QuickFind:
+                    QuickFind(input);
+                    break;
+                case MergeAlgorithms.QuickUnion:
+                    QuickUnion(input);
+                    break;
+                case MergeAlgorithms.WeightedQuickUnion:
+                    WeightedQuickUnion(input, max);
+                    break;
+                case MergeAlgorithms.WeightedQuickUnionWithPathCompression:
+                    WeightedQuickUnionWithPathCompression(input, max);
+                    break;
+            }
+        }
+
+        private static void QuickFind(Array quickFind)
+        {
             for (int i = 0; i < quickFind.NumberToUnionTo.Length; i++)
             {
                 int fromIndex = quickFind.NumberToUnionFrom[i];
                 int toIndex = quickFind.NumberToUnionTo[i];
-                int hold = quickFind.OutputArray[fromIndex];
+                int hold = quickFind.Output[fromIndex];
 
-                for (int j = 0; j < quickFind.OutputArray.Length; j++)
+                for (int j = 0; j < quickFind.Output.Length; j++)
                 {
-                    if (quickFind.OutputArray[j] == hold)
+                    if (quickFind.Output[j] == hold)
                     {
-                        quickFind.OutputArray[j] = quickFind.OutputArray[toIndex];
+                        quickFind.Output[j] = quickFind.Output[toIndex];
                     }
                 }
             }
         }
 
-        public static void QuickUnion(Array quickFind)
+        private static void QuickUnion(Array quickUnion)
         {
-            int max = 0;
-            max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
-
-            // setup the output array
-            quickFind.OutputArray = new int[max + 1];
-            for (int i = 0; i < quickFind.OutputArray.Length; i++)
+            for (int i = 0; i < quickUnion.NumberToUnionTo.Length; i++)
             {
-                quickFind.OutputArray[i] = i;
-            }
-
-            for (int i = 0; i < quickFind.NumberToUnionTo.Length; i++)
-            {
-                int unionFrom = quickFind.NumberToUnionFrom[i];
-                int unionTo = quickFind.NumberToUnionTo[i];
+                int NumberToUnionFrom = quickUnion.NumberToUnionFrom[i];
+                int NumberToUnionTo = quickUnion.NumberToUnionTo[i];
 
                 int j, k;
 
-                for (j = unionFrom; j != quickFind.OutputArray[j]; j = quickFind.OutputArray[j]) ;
-                for (k = unionTo; k != quickFind.OutputArray[k]; k = quickFind.OutputArray[k]) ;
+                for (j = NumberToUnionFrom; j != quickUnion.Output[j]; j = quickUnion.Output[j]) ;
+                for (k = NumberToUnionTo; k != quickUnion.Output[k]; k = quickUnion.Output[k]) ;
 
-                quickFind.OutputArray[j] = k;
+                quickUnion.Output[j] = k;
             }
         }
 
-        public static void WeightedQuickUnion(Array quickFind)
+        private static void WeightedQuickUnion(Array weightedQuickUnion, int max)
         {
-            int max = 0;
-            max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
-
-            // setup the output and depth arrays
-            quickFind.OutputArray = new int[max + 1];
+            // setup the depth array
             int[] depth = new int[max + 1];
 
-            for (int i = 0; i < quickFind.OutputArray.Length; i++)
+            for (int i = 0; i < weightedQuickUnion.Output.Length; i++)
             {
-                quickFind.OutputArray[i] = i;
                 depth[i] = 1;
             }
 
-            for (int i = 0; i < quickFind.NumberToUnionTo.Length; i++)
+            for (int i = 0; i < weightedQuickUnion.NumberToUnionTo.Length; i++)
             {
                 int j, k;
 
-                int unionFrom = quickFind.NumberToUnionFrom[i];
-                int unionTo = quickFind.NumberToUnionTo[i];
+                int NumberToUnionFrom = weightedQuickUnion.NumberToUnionFrom[i];
+                int NumberToUnionTo = weightedQuickUnion.NumberToUnionTo[i];
 
-                for (j = unionFrom; j != quickFind.OutputArray[j]; j = quickFind.OutputArray[j]) ;
-                for (k = unionTo; k != quickFind.OutputArray[k]; k = quickFind.OutputArray[k]) ;
+                for (j = NumberToUnionFrom; j != weightedQuickUnion.Output[j]; j = weightedQuickUnion.Output[j]) ;
+                for (k = NumberToUnionTo; k != weightedQuickUnion.Output[k]; k = weightedQuickUnion.Output[k]) ;
 
                 if (depth[j] < depth[k])
                 {
-                    quickFind.OutputArray[j] = k;
+                    weightedQuickUnion.Output[j] = k;
                     depth[k] += depth[j];
                 }
                 else
                 {
-                    quickFind.OutputArray[k] = j;
+                    weightedQuickUnion.Output[k] = j;
                     depth[j] += depth[k];
                 }
             }
         }
 
-        public static void WeightedQuickUnionWithPathCompression(Array quickFind)
+        private static void WeightedQuickUnionWithPathCompression(Array quickFind, int max)
         {
-            int max = 0;
-            max = quickFind.NumberToUnionFrom.Max() > quickFind.NumberToUnionTo.Max() ? quickFind.NumberToUnionFrom.Max() : quickFind.NumberToUnionTo.Max();
-
-            // setup the output and depth arrays
-            quickFind.OutputArray = new int[max + 1];
+            // setup the depth array
             int[] depth = new int[max + 1];
 
-            for (int i = 0; i < quickFind.OutputArray.Length; i++)
+            for (int i = 0; i < quickFind.Output.Length; i++)
             {
-                quickFind.OutputArray[i] = i;
                 depth[i] = 1;
             }
 
@@ -130,26 +123,26 @@ namespace AzureFunctionsBlogDemos.Merging
             {
                 int j, k;
 
-                int unionFrom = quickFind.NumberToUnionFrom[i];
-                int unionTo = quickFind.NumberToUnionTo[i];
+                int NumberToUnionFrom = quickFind.NumberToUnionTo[i];
+                int NumberToUnionTo = quickFind.NumberToUnionTo[i];
 
-                for (j = unionFrom; j != quickFind.OutputArray[j]; j = quickFind.OutputArray[j])
+                for (j = NumberToUnionFrom; j != quickFind.Output[j]; j = quickFind.Output[j])
                 {
-                    quickFind.OutputArray[j] = quickFind.OutputArray[quickFind.OutputArray[j]];
+                    quickFind.Output[j] = quickFind.Output[quickFind.Output[j]];
                 }
-                for (k = unionTo; k != quickFind.OutputArray[k]; k = quickFind.OutputArray[k])
+                for (k = NumberToUnionTo; k != quickFind.Output[k]; k = quickFind.Output[k])
                 {
-                    quickFind.OutputArray[k] = quickFind.OutputArray[quickFind.OutputArray[k]];
+                    quickFind.Output[k] = quickFind.Output[quickFind.Output[k]];
                 }
 
                 if (depth[j] < depth[k])
                 {
-                    quickFind.OutputArray[j] = k;
+                    quickFind.Output[j] = k;
                     depth[k] += depth[j];
                 }
                 else
                 {
-                    quickFind.OutputArray[k] = j;
+                    quickFind.Output[k] = j;
                     depth[j] += depth[k];
                 }
             }

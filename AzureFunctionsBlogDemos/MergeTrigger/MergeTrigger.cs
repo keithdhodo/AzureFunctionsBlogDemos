@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using static AzureFunctionsBlogDemos.Shared.Enums;
 
 namespace AzureFunctionsBlogDemos.Merging
 {
@@ -21,15 +22,15 @@ namespace AzureFunctionsBlogDemos.Merging
             // Parse request input
             string jsonContent = await req.Content.ReadAsStringAsync();
             var inputArrays = JsonConvert.DeserializeObject<Merging.Array>(jsonContent);
-            log.Info($"Inputs: {inputArrays.NumberToUnionFrom.ToString()}, {inputArrays.NumberToUnionTo.ToString()}");
+            //log.Info($"Inputs: {inputArrays.NumberToUnionFrom.ToString()}, {inputArrays.NumberToUnionTo.ToString()}");
 
-            if (inputArrays.NumberToUnionFrom.Length != inputArrays.NumberToUnionTo.Length)
-            {
-                return req.CreateResponse(HttpStatusCode.OK, new
-                {
-                    message = "Number of items to union do not match."
-                });
-            }
+            //if (inputArrays.NumberToUnionFrom.Length != inputArrays.NumberToUnionTo.Length)
+            //{
+            //    return req.CreateResponse(HttpStatusCode.OK, new
+            //    {
+            //        message = "Number of items to union do not match."
+            //    });
+            //}
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -37,7 +38,10 @@ namespace AzureFunctionsBlogDemos.Merging
             AddMessageToTopic(inputArrays);
 
             stopwatch.Stop();
-            inputArrays.Runtime = stopwatch.Elapsed;
+
+            var performance = new MergePerformance();
+
+            performance.Runtime = stopwatch.Elapsed;
 
             return req.CreateResponse(HttpStatusCode.OK, new
             {
@@ -66,13 +70,11 @@ namespace AzureFunctionsBlogDemos.Merging
                 namespaceManager.CreateTopic(td);
             }
 
-            List<string> paths = new List<string> { "QuickUnion", "WeightedQuickUnionWithPathCompression", "QuickFind" };
-
-            foreach (string path in paths)
+            foreach (string algorithmName in Enum.GetNames(typeof(MergeAlgorithms)))
             {
-                if (!namespaceManager.SubscriptionExists(topicName, path))
+                if (!namespaceManager.SubscriptionExists(topicName, algorithmName))
                 {
-                    namespaceManager.CreateSubscription(topicName, path);
+                    namespaceManager.CreateSubscription(topicName, algorithmName);
                 }
             }
 
