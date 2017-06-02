@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using static AzureFunctionsBlogDemos.Shared.Enums;
 
 namespace AzureFunctionsBlogDemos.Merging
@@ -7,13 +6,13 @@ namespace AzureFunctionsBlogDemos.Merging
     /// <summary>
     /// QuickFindInput takes an array of integers and then uses the two other arrays to union
     /// </summary>
-    public class Array
+    public class MergingArray
     {
         public int[] NumberToUnionFrom { get; set; }
         public int[] NumberToUnionTo { get; set; }
         public int[] Output { get; set; }
 
-        public static void Merge(Array input, MergeAlgorithms algorithmName)
+        public static void Merge(MergingArray input, MergeAlgorithms algorithmName)
         {
             int max = 0;
             max = input.NumberToUnionFrom.Max() > input.NumberToUnionTo.Max() ? input.NumberToUnionFrom.Max() : input.NumberToUnionTo.Max();
@@ -42,7 +41,7 @@ namespace AzureFunctionsBlogDemos.Merging
             }
         }
 
-        private static void QuickFind(Array quickFind)
+        private static void QuickFind(MergingArray quickFind)
         {
             for (int i = 0; i < quickFind.NumberToUnionTo.Length; i++)
             {
@@ -60,7 +59,7 @@ namespace AzureFunctionsBlogDemos.Merging
             }
         }
 
-        private static void QuickUnion(Array quickUnion)
+        private static void QuickUnion(MergingArray quickUnion)
         {
             for (int i = 0; i < quickUnion.NumberToUnionTo.Length; i++)
             {
@@ -76,7 +75,7 @@ namespace AzureFunctionsBlogDemos.Merging
             }
         }
 
-        private static void WeightedQuickUnion(Array weightedQuickUnion, int max)
+        private static void WeightedQuickUnion(MergingArray weightedQuickUnion, int max)
         {
             // setup the depth array
             int[] depth = new int[max + 1];
@@ -109,7 +108,7 @@ namespace AzureFunctionsBlogDemos.Merging
             }
         }
 
-        private static void WeightedQuickUnionWithPathCompression(Array quickFind, int max)
+        private static void WeightedQuickUnionWithPathCompression(MergingArray quickFind, int max)
         {
             // setup the depth array
             int[] depth = new int[max + 1];

@@ -36,7 +36,7 @@ namespace HttpClientSample
                 {
                     // Create a new Array
                     int arraySize = 30000;
-                    var inputArray = new AzureFunctionsBlogDemos.Merging.Array();
+                    var inputArray = new AzureFunctionsBlogDemos.Merging.MergingArray();
                     inputArray.NumberToUnionFrom = CreateIntegers(arraySize);
                     inputArray.NumberToUnionTo = CreateIntegers(arraySize);
 
@@ -53,7 +53,7 @@ namespace HttpClientSample
             Console.ReadLine();
         }
 
-        static async Task<Uri> CreateProductAsync(AzureFunctionsBlogDemos.Merging.Array inputArray)
+        static async Task<Uri> CreateProductAsync(AzureFunctionsBlogDemos.Merging.MergingArray inputArray)
         {
             var routeAndKey = new Uri(client.BaseAddress + "api/MergeTrigger?code=" + ConfigurationManager.AppSettings["ApiKey"]);
 

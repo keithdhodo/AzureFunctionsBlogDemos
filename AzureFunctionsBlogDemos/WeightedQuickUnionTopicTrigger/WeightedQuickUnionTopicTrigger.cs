@@ -10,7 +10,7 @@ namespace AzureFunctionsBlogDemos.Merging
     public class WeightedQuickUnionTopicTrigger
     {
 
-        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable,
+        public static void Run(MergingArray myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable,
             IBinder binder)
         {
             log.Info("WeightedQuickUnionTopicTrigger processed a request.");
@@ -18,7 +18,7 @@ namespace AzureFunctionsBlogDemos.Merging
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.WeightedQuickUnionWithPathCompression);
+            MergingArray.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.WeightedQuickUnionWithPathCompression);
 
             stopwatch.Stop();
 

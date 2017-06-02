@@ -9,7 +9,7 @@ namespace AzureFunctionsBlogDemos.Merging
 {
     public class QuickFindSBTopicTrigger
     {
-        public static void Run(Array myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable,
+        public static void Run(MergingArray myQueueItem, TraceWriter log, IAsyncCollector<MergePerformance> outputTable,
             IBinder binder)
         {
             log.Info("QuickFindSBTopicTrigger processed a request.");
@@ -17,7 +17,7 @@ namespace AzureFunctionsBlogDemos.Merging
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Array.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickFind);
+            MergingArray.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickFind);
 
             stopwatch.Stop();
 

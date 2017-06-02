@@ -151,7 +151,7 @@
     </None>
     <Compile Include="MergeTrigger\MergeTrigger.cs" />
     <Compile Include="QuickUnionTopicTrigger\QuickUnionTopicTrigger.cs" />
-    <Compile Include="Shared\Arrays.cs" />
+    <Compile Include="Shared\MergingArray.cs" />
     <Compile Include="Shared\Enums.cs" />
     <Compile Include="Shared\MergePerformance.cs" />
     <Compile Include="Shared\SignTest.cs" />
