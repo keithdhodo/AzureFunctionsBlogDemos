@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -27,7 +26,7 @@ namespace HttpClientSample
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var numberOfRequests = 1000;
+            var numberOfRequests = 100;
 
             for (int i = 0; i < numberOfRequests; i++)
             {
@@ -35,12 +34,12 @@ namespace HttpClientSample
                 try
                 {
                     // Create a new Array
-                    int arraySize = 30000;
+                    int arraySize = 2000;
                     var inputArray = new AzureFunctionsBlogDemos.Merging.MergingArray();
                     inputArray.NumberToUnionFrom = CreateIntegers(arraySize);
                     inputArray.NumberToUnionTo = CreateIntegers(arraySize);
 
-                    var url = await CreateProductAsync(inputArray);
+                    var url = await SendArrayAsync(inputArray);
                     Console.WriteLine($"Created at {url}");
 
                 }
@@ -53,7 +52,7 @@ namespace HttpClientSample
             Console.ReadLine();
         }
 
-        static async Task<Uri> CreateProductAsync(AzureFunctionsBlogDemos.Merging.MergingArray inputArray)
+        static async Task<Uri> SendArrayAsync(AzureFunctionsBlogDemos.Merging.MergingArray inputArray)
         {
             var routeAndKey = new Uri(client.BaseAddress + "api/MergeTrigger?code=" + ConfigurationManager.AppSettings["ApiKey"]);
 
