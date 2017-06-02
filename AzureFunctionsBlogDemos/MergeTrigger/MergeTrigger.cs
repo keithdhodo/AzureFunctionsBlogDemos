@@ -4,7 +4,6 @@ using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
@@ -17,20 +16,20 @@ namespace AzureFunctionsBlogDemos.Merging
     {
         public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
         {
-            log.Info("QuickUnionTrigger processed a request.");
+            log.Info("MergeTrigger has processed a request.");
 
             // Parse request input
             string jsonContent = await req.Content.ReadAsStringAsync();
             var inputArrays = JsonConvert.DeserializeObject<Merging.Array>(jsonContent);
-            //log.Info($"Inputs: {inputArrays.NumberToUnionFrom.ToString()}, {inputArrays.NumberToUnionTo.ToString()}");
+            log.Info($"Inputs: {string.Join(",", inputArrays.NumberToUnionFrom)}, {string.Join(",", inputArrays.NumberToUnionTo)}");
 
-            //if (inputArrays.NumberToUnionFrom.Length != inputArrays.NumberToUnionTo.Length)
-            //{
-            //    return req.CreateResponse(HttpStatusCode.OK, new
-            //    {
-            //        message = "Number of items to union do not match."
-            //    });
-            //}
+            if (inputArrays.NumberToUnionFrom.Length != inputArrays.NumberToUnionTo.Length)
+            {
+                return req.CreateResponse(HttpStatusCode.OK, new
+                {
+                    message = "Number of items to union do not match."
+                });
+            }
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
