@@ -41,7 +41,7 @@ namespace AzureFunctionsBlogDemos.Merging
                 outputBlob.WriteLine();
                 outputBlob.WriteLine($"Runtime: {performance.Runtime.ToString()}");
 
-                // create Sha1 Hash
+                // create Sha512 Hash
                 var sha = new SHA512CryptoServiceProvider();
                 // This is one implementation of the abstract class SHA512.
                 var result = sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(blobPath + myQueueItem.NumberToUnionFrom + myQueueItem.NumberToUnionTo + myQueueItem.Output));

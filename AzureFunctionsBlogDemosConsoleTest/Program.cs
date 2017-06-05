@@ -9,6 +9,7 @@ namespace HttpClientSample
 {
     class Program
     {
+        static Random r = new Random();
         static HttpClient client = new HttpClient();
 
 
@@ -26,7 +27,7 @@ namespace HttpClientSample
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var numberOfRequests = 100;
+            var numberOfRequests = 1000;
 
             for (int i = 0; i < numberOfRequests; i++)
             {
@@ -65,13 +66,11 @@ namespace HttpClientSample
 
         private static int[] CreateIntegers(int input)
         {
-            int[] returnArray = new int[input];
+            int[] returnArray = new int[input * 2];
 
-            Random r = new Random();
-
-            for (int i = 0; i < input; i++)
+            for (int i = 0; i < input * 2; i++)
             {
-                int number = r.Next(0, input * 4);
+                int number = r.Next(0, input);
 
                 returnArray[i] = number;
             }

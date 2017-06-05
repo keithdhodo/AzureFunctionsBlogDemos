@@ -20,7 +20,7 @@ namespace AzureFunctionsBlogDemos.Merging
 
             // Parse request input
             string jsonContent = await req.Content.ReadAsStringAsync();
-            var inputArrays = JsonConvert.DeserializeObject<Merging.MergingArray>(jsonContent);
+            var inputArrays = JsonConvert.DeserializeObject<MergingArray>(jsonContent);
             log.Info($"Inputs: {string.Join(",", inputArrays.NumberToUnionFrom)}, {string.Join(",", inputArrays.NumberToUnionTo)}");
 
             if (inputArrays.NumberToUnionFrom.Length != inputArrays.NumberToUnionTo.Length)
@@ -48,7 +48,7 @@ namespace AzureFunctionsBlogDemos.Merging
             });
         }
 
-        public static void AddMessageToTopic(Merging.MergingArray input)
+        public static void AddMessageToTopic(MergingArray input)
         {
             // Create the topic if it does not exist already.
             string connectionString =
