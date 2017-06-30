@@ -28,8 +28,8 @@ namespace AzureFunctionsBlogDemos.Tribonacci
 
             var performance = new TribonacciPerformance();
             performance.Runtime = stopwatch.Elapsed;
-            performance.AlgorithmName = "TribonacciLinear";
-            performance.PartitionKey = "TribonacciLinear";
+            performance.AlgorithmName = "TribonacciQuadratic";
+            performance.PartitionKey = "TribonacciQuadratic";
             performance.RowKey = Guid.NewGuid().ToString();
             performance.Iterations = myQueueItem.Iterations;
             performance.Result = outputArray[myQueueItem.Iterations - 1];
