@@ -9,12 +9,42 @@ namespace AzureFunctionsBlogDemos.Shared
         public BigInteger[] StartingSet { get; set; }
         public int Iterations { get; set; }
 
+        private List<BigInteger> _internalList { get; set; }
+
         public BigInteger[] Tribonacci(Tribonnaci input, TribonacciAlgorithms algorithmName)
         {
             switch (algorithmName)
             {
                 case TribonacciAlgorithms.linear:
                     return TribonacciLinear(input.StartingSet, input.Iterations);
+                case TribonacciAlgorithms.quadratic:
+                    if (Iterations == 0)
+                    {
+                        return new BigInteger[1] { 0 };
+                    }
+                    else if (Iterations == 1)
+                    {
+                        return new BigInteger[1] { StartingSet[0] };
+                    }
+                    else if (Iterations == 2)
+                    {
+                        return new BigInteger[2] { StartingSet[0], StartingSet[1] };
+                    }
+                    else if (Iterations == 3)
+                    {
+                        return StartingSet;
+                    }
+                    else
+                    {
+                        var _internalList = new List<BigInteger>(StartingSet);
+
+                        for (int i = 3; i < Iterations; i++)
+                        {
+                            _internalList.Add(0);
+                        }
+                        _internalList[Iterations - 1] = TribonacciQuadratic(Iterations - 1);
+                        return _internalList.ToArray();
+                    }
             }
 
             return new BigInteger[0];
@@ -57,6 +87,18 @@ namespace AzureFunctionsBlogDemos.Shared
             }
 
             return list.ToArray();
+        }
+
+        public BigInteger TribonacciQuadratic(int n)
+        {
+            if (n < 3)
+            {
+                return StartingSet[n];
+            }
+            else
+            {
+                return TribonacciQuadratic(n - 1) + TribonacciQuadratic(n - 2) + TribonacciQuadratic(n - 3);
+            }
         }
     }
 }

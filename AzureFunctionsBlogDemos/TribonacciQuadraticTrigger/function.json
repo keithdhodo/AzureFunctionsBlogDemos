@@ -1,0 +1,30 @@
+﻿{
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "topicName": "TribonacciAlgorithms",
+      "subscriptionName": "quadratic",
+      "connection": "AzureWebJobsServiceBus",
+      "accessRights": "manage",
+      "type": "serviceBusTrigger",
+      "direction": "in"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputTable",
+      "tableName": "Tribonacci",
+      "type": "table"
+    },
+    {
+      "connection": "AzureWebJobsStorage",
+      "direction": "out",
+      "name": "outputBlob",
+      "path": "tribonacci/{TribonacciQuadraticTrigger}.txt",
+      "type": "blob"
+    }
+  ],
+  "disabled": false,
+  "entryPoint": "AzureFunctionsBlogDemos.Tribonacci.TribonacciQuadraticTrigger.Run",
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll"
+}

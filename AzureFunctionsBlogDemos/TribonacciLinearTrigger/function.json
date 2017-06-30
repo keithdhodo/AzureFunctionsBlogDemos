@@ -3,7 +3,7 @@
     {
       "name": "myQueueItem",
       "topicName": "TribonacciAlgorithms",
-      "subscriptionName": "quadratic",
+      "subscriptionName": "linear",
       "connection": "AzureWebJobsServiceBus",
       "accessRights": "manage",
       "type": "serviceBusTrigger",
