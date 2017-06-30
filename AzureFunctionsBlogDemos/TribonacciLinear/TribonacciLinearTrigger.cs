@@ -2,13 +2,9 @@
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AzureFunctionsBlogDemos.Tribonacci
 {
