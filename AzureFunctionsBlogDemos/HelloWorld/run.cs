@@ -24,7 +24,7 @@ namespace AzureFunctionsBlogDemos
 
             return name == null
                 ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
-                : req.CreateResponse(HttpStatusCode.OK, "Hello " + name + " from Azure deployed from GitHub.");
+                : req.CreateResponse(HttpStatusCode.OK, "Hello " + name + ". It's sunny and awesome today.");
         }
     }
 }

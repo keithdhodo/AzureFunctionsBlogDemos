@@ -10,5 +10,12 @@
             WeightedQuickUnionWithPathCompression
 
         }
+
+        public enum TribonacciAlgorithms
+        {
+            quadratic,
+            linear,
+            logarithmic
+        }
     }
 }

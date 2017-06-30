@@ -24,6 +24,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -128,9 +129,18 @@
     <Compile Include="QuickFindSBTopicTrigger\QuickFindSBTopicTrigger.cs" />
     <Content Include="QuickFindSBTopicTrigger\sample.dat" />
     <Content Include="QuickFindSBTopicTrigger\readme.md" />
+    <Content Include="TribonacciLinear\function.json" />
+    <Content Include="TribonacciLinear\readme.md" />
+    <None Include="TribonacciTrigger\function.json" />
     <Content Include="WeightedQuickUnionTopicTrigger\function.json" />
+    <Compile Include="Shared\Performance.cs" />
+    <Compile Include="Shared\TribonacciPerformance.cs" />
+    <Compile Include="Shared\Tribonnaci.cs" />
+    <Compile Include="TribonacciLinear\TribonacciLinearTrigger.cs" />
+    <Compile Include="TribonacciTrigger\TribonacciTrigger.cs" />
     <Compile Include="WeightedQuickUnionTopicTrigger\WeightedQuickUnionTopicTrigger.cs" />
     <Content Include="WeightedQuickUnionTopicTrigger\sample.dat" />
+    <Content Include="TribonacciTrigger\readme.md" />
     <None Include="WQUWPCTopicTrigger\readme.md" />
     <None Include="MergeTrigger\readme.md" />
     <Content Include="packages.config" />

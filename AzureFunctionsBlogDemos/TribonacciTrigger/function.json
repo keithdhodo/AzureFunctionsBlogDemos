@@ -1,0 +1,22 @@
+﻿{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "direction": "in",
+      "methods": [
+        "post"
+      ],
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson"
+    },
+    {
+      "direction": "out",
+      "name": "$return",
+      "type": "http"
+    }
+  ],
+  "disabled": false,
+  "entryPoint": "AzureFunctionsBlogDemos.Tribonacci.TribonacciTrigger.Run",
+  "scriptFile": "..\\bin\\AzureFunctionsBlogDemos.dll"
+}
