@@ -17,7 +17,7 @@ namespace AzureFunctionsBlogDemos.Merging
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            MergingArray.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickFind);
+            myQueueItem.Merge(myQueueItem, Shared.Enums.MergeAlgorithms.QuickFind);
 
             stopwatch.Stop();
 

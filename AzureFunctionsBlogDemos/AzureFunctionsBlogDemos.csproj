@@ -135,6 +135,7 @@
     <None Include="TribonacciTrigger\function.json" />
     <None Include="TribonacciQuadraticTrigger\function.json" />
     <Content Include="WeightedQuickUnionTopicTrigger\function.json" />
+    <Compile Include="Shared\IMergingArray.cs" />
     <Compile Include="Shared\Performance.cs" />
     <Compile Include="Shared\TribonacciPerformance.cs" />
     <Compile Include="Shared\Tribonnaci.cs" />

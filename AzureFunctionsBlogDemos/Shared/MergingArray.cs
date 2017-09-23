@@ -6,13 +6,13 @@ namespace AzureFunctionsBlogDemos.Merging
     /// <summary>
     /// QuickFindInput takes an array of integers and then uses the two other arrays to union
     /// </summary>
-    public class MergingArray
+    public class MergingArray : IMergingArray
     {
         public int[] NumberToUnionFrom { get; set; }
         public int[] NumberToUnionTo { get; set; }
         public int[] Output { get; set; }
 
-        public static void Merge(MergingArray input, MergeAlgorithms algorithmName)
+        public void Merge(MergingArray input, MergeAlgorithms algorithmName)
         {
             int max = 0;
             max = input.NumberToUnionFrom.Max() > input.NumberToUnionTo.Max() ? input.NumberToUnionFrom.Max() : input.NumberToUnionTo.Max();
