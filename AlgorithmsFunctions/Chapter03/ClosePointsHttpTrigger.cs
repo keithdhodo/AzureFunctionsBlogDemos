@@ -42,7 +42,9 @@ namespace AlgorithmsFunctions.Chapter03
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var count = new ClosePoints().FindPointsWithinDistance(distance);
+            var closePoints = new ClosePoints(distance * 4);
+            closePoints.GenerateRandomPoints();
+            var count = closePoints.FindPointsWithinDistance(distance);
 
             stopwatch.Stop();
 

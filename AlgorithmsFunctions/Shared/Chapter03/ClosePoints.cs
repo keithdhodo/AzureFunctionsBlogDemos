@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlgorithmsFunctions.Shared.Chapter03
 {
@@ -10,41 +6,50 @@ namespace AlgorithmsFunctions.Shared.Chapter03
     {
         public Random Random { get; private set; }
         public Point[] Points { get; private set; }
+        public int NumberOfPoints { get; private set; }
 
-        public ClosePoints()
+        private ClosePoints()
+        {
+
+        }
+
+        public ClosePoints(int numberOfPoints) : this()
         {
             Random = new Random();
+            NumberOfPoints = numberOfPoints;
+            Points = new Point[NumberOfPoints];
         }
 
         public int FindPointsWithinDistance(int distance)
         {
-            var numberOfPoints = distance * 4;
+            var pointsWithinDistance = 0;
 
-            Points = new Point[numberOfPoints];
-            for (int i = 0; i < numberOfPoints; i++)
+            for (int i = 0; i < Points.Length; i++)
             {
-                Points[i] = new Point()
-                {
-                    X = Random.Next(-numberOfPoints, numberOfPoints),
-                    Y = Random.Next(-numberOfPoints, numberOfPoints)
-                };
-            }
-
-            // calculate the number of points within distance
-            var count = 0;
-
-            for (int i = 0; i < numberOfPoints; i++)
-            {
-                for (int j = i+1; j < numberOfPoints; j++)
+                for (int j = i + 1; j < Points.Length; j++)
                 {
                     if (Points[i].Distance(Points[j]) < distance)
                     {
-                        count++;
+                        pointsWithinDistance++;
                     }
                 }
             }
 
-            return count;
+            return pointsWithinDistance;
+        }
+
+        public void GenerateRandomPoints()
+        {
+            for (int i = 0; i < NumberOfPoints; i++)
+            {
+                Points[i] = new Point()
+                {
+                    X = Random.Next(-NumberOfPoints, NumberOfPoints),
+                    Y = Random.Next(-NumberOfPoints, NumberOfPoints)
+                };
+            }
+
+            return;
         }
     }
 }

@@ -50,6 +50,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClosePointsTests.cs" />
     <Compile Include="CountToABillionTests.cs" />
     <Compile Include="PointTests.cs" />
     <Compile Include="PrimesTests.cs" />
