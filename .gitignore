@@ -4,34 +4,15 @@
 # User-specific files
 *.suo
 *.user
-bin
-obj
-csx
-.vs
-edge
-Publish
-.vscode
 *.userosscache
 *.sln.docstates
-
-*.user
-*.suo
-*.cscfg
-*.Cache
-project.lock.json
-
-/packages
-/TestResults
 
 /tools/NuGet.exe
 /App_Data
 /secrets
 /data
 .secrets
-appsettings.json
-local.settings.json
 *settings.json
-secretappsettings.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
