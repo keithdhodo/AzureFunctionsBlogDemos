@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AlgorithmsFunctions.Shared.Chapter03
+﻿namespace AlgorithmsFunctions.Shared.Chapter03
 {
     // class is originally called LogTable and is Program 3.1
     public class LogBaseTwo
