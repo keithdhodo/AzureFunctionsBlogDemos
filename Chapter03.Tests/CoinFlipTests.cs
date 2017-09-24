@@ -1,6 +1,5 @@
-﻿using System;
+﻿using AlgorithmsFunctions.Shared.Chapter03;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AlgorithmsFunctions.Shared.Chapter03;
 using System.Numerics;
 
 namespace Chapter03.Tests

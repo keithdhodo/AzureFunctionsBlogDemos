@@ -52,12 +52,14 @@
   <ItemGroup>
     <Compile Include="ClosePointsTests.cs" />
     <Compile Include="CountToABillionTests.cs" />
+    <Compile Include="JosephusTests.cs" />
     <Compile Include="PointTests.cs" />
     <Compile Include="PrimesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogBaseTwoTests.cs" />
     <Compile Include="PrintStatsTests.cs" />
     <Compile Include="CoinFlipTests.cs" />
+    <Compile Include="ScratchPadTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

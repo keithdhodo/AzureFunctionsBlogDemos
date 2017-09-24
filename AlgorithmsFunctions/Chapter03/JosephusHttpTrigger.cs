@@ -9,42 +9,41 @@ using System.Net.Http;
 
 namespace AlgorithmsFunctions.Chapter03
 {
-    public class ClosePointsHttpTrigger
+    public class JosephusHttpTrigger
     {
-        [FunctionName("ClosePointsHttpTrigger")]
+        [FunctionName("JosephusHttpTrigger")]
         public static async System.Threading.Tasks.Task<HttpResponseMessage> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "api/chapter03/closepoints")]
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "api/chapter03/josephus")]
             HttpRequestMessage req,
             TraceWriter log)
         {
-            log.Info("ClosePointsHttpTrigger function processed a request.");
+            log.Info("JosephusHttpTrigger function processed a request.");
 
             // Parse request input
             dynamic data = await req.Content.ReadAsAsync<object>();
             // Set name to body data
-            int distance = data?.distance;
+            int numberOfParticipants = data?.NumberOfParticipants;
+            int orderToEliminate = data?.OrderToEliminate;
 
-            if (distance <= 0)
+            if (numberOfParticipants <= 0)
             {
                 return req.CreateResponse(HttpStatusCode.OK, new
                 {
-                    message = "Distance needs to be greater than zero. Please enter a value greater than zero and retry the request."
+                    message = "The number of participants needs to be greater than zero. Please enter a value greater than zero and retry the request."
                 });
             }
 
-            log.Info($"Creating {distance * 4} points and finding number of points within distance.");
+            log.Info($"Creating Josephus problem with {numberOfParticipants} participants.");
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var closePoints = new ClosePoints(distance * 4);
-            closePoints.GenerateRandomPoints();
-            var count = closePoints.FindPointsWithinDistance(distance);
+            var finalNode = new Josephus(numberOfParticipants, orderToEliminate).ExecuteJosephusSimulation();
 
             stopwatch.Stop();
 
             return req.CreateResponse(HttpStatusCode.OK, new
             {
-                message = JsonConvert.SerializeObject(count)
+                message = JsonConvert.SerializeObject(finalNode.Item)
             });
         }
     }
