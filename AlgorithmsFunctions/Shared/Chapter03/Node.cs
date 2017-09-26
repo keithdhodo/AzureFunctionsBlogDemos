@@ -10,5 +10,22 @@
             Item = item;
             Next = null;
         }
+
+        public Node<T> Reverse()
+        {
+            Node<T> currentNode = this;
+            Node<T> nextNode;
+            Node<T> holdNode = null;
+            
+            while (currentNode != null)
+            {
+                nextNode = currentNode.Next;
+                currentNode.Next = holdNode;
+                holdNode = currentNode;
+                currentNode = nextNode;
+            }
+
+            return holdNode;
+        }
     }
 }
