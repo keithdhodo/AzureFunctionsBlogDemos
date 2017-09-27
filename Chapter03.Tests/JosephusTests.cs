@@ -49,5 +49,12 @@ namespace Chapter03.Tests
             var result = new Josephus(numberOfParticipants: (int)Math.Pow(10, 6), orderToRemoveParticipants: 50).ExecuteJosephusSimulation();
             Assert.AreEqual(999999, result.Item);
         }
+
+        [TestMethod]
+        public void Josephus_TestTenMillionParticipantsAndEliminateByFifty()
+        {
+            var result = new Josephus(numberOfParticipants: (int)Math.Pow(10, 7), orderToRemoveParticipants: 50).ExecuteJosephusSimulation();
+            Assert.AreEqual(9999999, result.Item);
+        }
     }
 }
