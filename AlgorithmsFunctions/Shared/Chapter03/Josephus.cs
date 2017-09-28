@@ -18,25 +18,24 @@
 
         public Node<int> ExecuteJosephusSimulation()
         {
-            var head = new Node<int>(1);
-            var nextNode = head;
-            
-            for (int i = 2; i < NumberOfParticipants; i++)
+            var list = new CircularList<int>();
+            var nodeToInsert = new Node<int>(default(int));
+
+            for (int i = 1; i <= NumberOfParticipants; i++)
             {
-                nextNode = nextNode.Next = new Node<int>(i);
+                nodeToInsert = list.Insert(nodeToInsert, i);
             }
 
-            nextNode.Next = head;
-
-            while (nextNode != nextNode.Next)
+            while (nodeToInsert != nodeToInsert.Next)
             {
                 for (int i = 1; i < OrderToRemoveParticipants; i++)
                 {
-                    nextNode.Next = nextNode.Next.Next;
+                    nodeToInsert = nodeToInsert.Next;
+                    list.RemoveNextNode(nodeToInsert);
                 }
             }
 
-            return nextNode;
+            return nodeToInsert;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace AlgorithmsFunctions.Chapter03
 
             return req.CreateResponse(HttpStatusCode.OK, new
             {
-                message = JsonConvert.SerializeObject(finalNode.Item)
+                message = JsonConvert.SerializeObject($"The winner is: {finalNode.Item}")
             });
         }
     }
