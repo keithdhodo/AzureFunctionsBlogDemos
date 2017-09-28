@@ -1,4 +1,6 @@
-﻿namespace AlgorithmsFunctions.Shared.Chapter03
+﻿using System.Collections.Generic;
+
+namespace AlgorithmsFunctions.Shared.Chapter03
 {
     public class Node<T>
     {
@@ -26,6 +28,34 @@
             }
 
             return holdNode;
+        }
+
+        /// <summary>
+        /// Sort a LinkedList -- first Node is expected to be an empty head - need to optimize
+        /// </summary>
+        /// <returns></returns>
+        public Node<T> Sort()
+        {
+            Node<T> head, itemAfterNext, secondLinkedListHead, nextItemInSecondLinkedList = new Node<T>(default(T));
+            
+            while (this.Next != null)
+            {
+                head = this.Next;
+                itemAfterNext = head.Next;
+                this.Next = itemAfterNext;
+
+                for (secondLinkedListHead = nextItemInSecondLinkedList; secondLinkedListHead.Next != null; secondLinkedListHead = secondLinkedListHead.Next)
+                {
+                    if (Comparer<T>.Default.Compare(secondLinkedListHead.Next.Item, head.Item) > 0)
+                    {
+                        break;
+                    }
+                }
+                head.Next = secondLinkedListHead.Next;
+                secondLinkedListHead.Next = head;
+            }
+
+            return nextItemInSecondLinkedList.Next;
         }
     }
 }
