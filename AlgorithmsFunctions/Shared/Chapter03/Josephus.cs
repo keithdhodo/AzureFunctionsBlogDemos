@@ -31,8 +31,9 @@
                 for (int i = 1; i < OrderToRemoveParticipants; i++)
                 {
                     nodeToInsert = nodeToInsert.Next;
-                    list.RemoveNextNode(nodeToInsert);
+                    
                 }
+                list.RemoveNextNode(nodeToInsert);
             }
 
             return nodeToInsert;
