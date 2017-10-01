@@ -5,7 +5,7 @@ using System;
 namespace Chapter03.Tests
 {
     [TestClass]
-    public class NodeTest
+    public class NodeTests
     {
         [TestMethod]
         public void Node_ReverseSimpleLinkedList()
@@ -156,6 +156,14 @@ namespace Chapter03.Tests
 
             Assert.AreEqual(0, sortedLinkedList.Item);
             Assert.AreEqual(4999, lastNode.Item);
+        }
+
+        [TestMethod]
+        public void Node_MoveLargestItemToEnd_SingleNode()
+        {
+            var head = new Node<int>(50);
+
+            Assert.AreEqual(head, head.MoveLargestItemToEnd());
         }
     }
 }
