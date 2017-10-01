@@ -53,7 +53,7 @@
     <Compile Include="ClosePointsTests.cs" />
     <Compile Include="CountToABillionTests.cs" />
     <Compile Include="JosephusTests.cs" />
-    <Compile Include="NodeTest.cs" />
+    <Compile Include="NodeTests.cs" />
     <Compile Include="PointTests.cs" />
     <Compile Include="PrimesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

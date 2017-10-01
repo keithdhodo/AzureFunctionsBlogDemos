@@ -58,5 +58,22 @@ namespace AlgorithmsFunctions.Shared.Chapter03
 
             return nextItemInSecondLinkedList.Next;
         }
+
+        /// <summary>
+        /// Move the largest item to the end of the list
+        /// </summary>
+        /// <returns></returns>
+        public Node<T> MoveLargestItemToEnd()
+        {
+            var head = this;
+            var largestItem =  new Node<T>(default(T));
+
+            if (head.Next == null)
+            {
+                return head;
+            }
+
+            return head;
+        }
     }
 }
