@@ -7,6 +7,8 @@ namespace Chapter03.Tests
     [TestClass]
     public class NodeTests
     {
+        //[TestMethod]
+
         [TestMethod]
         public void Node_ReverseSimpleLinkedList()
         {
@@ -164,6 +166,21 @@ namespace Chapter03.Tests
             var head = new Node<int>(50);
 
             Assert.AreEqual(head, head.MoveLargestItemToEnd());
+        }
+
+        [TestMethod]
+        public void Node_MoveLargestItemToEnd_Simple()
+        {
+            var head = new Node<int>(50);
+            var nextNode = new Node<int>(18);
+            head.Next = nextNode;
+            nextNode.Next = new Node<int>(17);
+
+            var largestMovedToEnd = head.MoveLargestItemToEnd();
+
+            var lastNode = largestMovedToEnd.GetLastNode();
+
+            Assert.AreEqual(head.Item, lastNode.Item);
         }
     }
 }
