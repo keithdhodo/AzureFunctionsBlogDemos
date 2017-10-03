@@ -19,7 +19,7 @@ namespace AlgorithmsFunctions.Shared.Chapter03
             Node<T> currentNode = this;
             Node<T> nextNode;
             Node<T> holdNode = null;
-            
+
             while (currentNode != null)
             {
                 nextNode = currentNode.Next;
@@ -38,7 +38,7 @@ namespace AlgorithmsFunctions.Shared.Chapter03
         public Node<T> Sort()
         {
             Node<T> head, itemAfterNext, secondLinkedListHead, nextItemInSecondLinkedList = new Node<T>(default(T));
-            
+
             while (this.Next != null)
             {
                 head = this.Next;
@@ -65,15 +65,47 @@ namespace AlgorithmsFunctions.Shared.Chapter03
         /// <returns></returns>
         public Node<T> MoveLargestItemToEnd()
         {
-            var head = this;
-            var largestItem =  new Node<T>(default(T));
+            var emtpyNode = new Node<T>(default(T));
+            emtpyNode.Next = this;
+            var currentNode = this;
+            var lastNode = emtpyNode;
 
-            if (head.Next == null)
+            if (currentNode.Next == null)
             {
-                return head;
+                return currentNode;
             }
 
-            return head;
+            while (currentNode.Next != null)
+            {
+                if (Comparer<T>.Default.Compare(currentNode.Item, currentNode.Next.Item) > 0) // swap
+                {
+                    var swapNode = currentNode.Next;
+                    lastNode.Next = swapNode;
+                    currentNode.Next = swapNode.Next;
+                    swapNode.Next = currentNode;
+                    lastNode = swapNode;
+                }
+                else
+                {
+                    lastNode = currentNode;
+                    currentNode = currentNode.Next;
+                }
+
+            }
+
+            return emtpyNode.Next;
+        }
+
+        public Node<T> GetLastNode()
+        {
+            Node<T> lastNode = this;
+
+            while (lastNode.Next != null)
+            {
+                lastNode = lastNode.Next;
+            }
+
+            return lastNode;
         }
     }
 }
