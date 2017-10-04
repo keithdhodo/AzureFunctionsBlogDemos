@@ -182,5 +182,76 @@ namespace Chapter03.Tests
 
             Assert.AreEqual(head.Item, lastNode.Item);
         }
+
+        [TestMethod]
+        public void Node_MoveLargestItemToEnd_FourItemLargeInSecondNode()
+        {
+            var head = new Node<int>(1);
+            var nextNode = new Node<int>(100);
+            head.Next = nextNode;
+            nextNode.Next = new Node<int>(17);
+            nextNode = nextNode.Next;
+            nextNode.Next = new Node<int>(50);
+
+            var largestMovedToEnd = head.MoveLargestItemToEnd();
+
+            var lastNode = largestMovedToEnd.GetLastNode();
+
+            Assert.AreEqual(100, lastNode.Item);
+        }
+
+        [TestMethod]
+        public void Node_MoveLargestItemToEnd_FourItemLargeInThirdNode()
+        {
+            var head = new Node<int>(1);
+            var nextNode = new Node<int>(17);
+            head.Next = nextNode;
+            nextNode.Next = new Node<int>(100);
+            nextNode = nextNode.Next;
+            nextNode.Next = new Node<int>(50);
+
+            var largestMovedToEnd = head.MoveLargestItemToEnd();
+
+            var lastNode = largestMovedToEnd.GetLastNode();
+
+            Assert.AreEqual(100, lastNode.Item);
+        }
+
+        [TestMethod]
+        public void Node_MoveLargestItemToEnd_FourItemLargeInFourthNode()
+        {
+            var head = new Node<int>(1);
+            var nextNode = new Node<int>(17);
+            head.Next = nextNode;
+            nextNode.Next = new Node<int>(50);
+            nextNode = nextNode.Next;
+            nextNode.Next = new Node<int>(100);
+
+            var largestMovedToEnd = head.MoveLargestItemToEnd();
+
+            var lastNode = largestMovedToEnd.GetLastNode();
+
+            Assert.AreEqual(100, lastNode.Item);
+        }
+
+        [TestMethod]
+        public void Node_MoveLargestItemToEnd_OneHundredNodes()
+        {
+            var head = new Node<int>(1);
+            var nextNode = new Node<int>(100);
+            head.Next = nextNode;
+
+            for (int i = 2; i < 100; i++)
+            {
+                nextNode.Next = new Node<int>(100 % i);
+                nextNode = nextNode.Next;
+            }
+
+            var largestMovedToEnd = head.MoveLargestItemToEnd();
+
+            var lastNode = largestMovedToEnd.GetLastNode();
+
+            Assert.AreEqual(100, lastNode.Item);
+        }
     }
 }
