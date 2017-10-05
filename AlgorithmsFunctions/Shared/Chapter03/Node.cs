@@ -96,6 +96,58 @@ namespace AlgorithmsFunctions.Shared.Chapter03
             return emtpyNode.Next;
         }
 
+        /// <summary>
+        /// Move the largest item to the end of the list
+        /// </summary>
+        /// <returns></returns>
+        public Node<T> MoveSmallestItemToFront()
+        {
+            var emtpyNode = new Node<T>(default(T));
+            emtpyNode.Next = this;
+            var currentNode = this;
+            var lastNode = emtpyNode;
+            var swapNode = this;
+
+            if (currentNode.Next == null)
+            {
+                return currentNode;
+            }
+
+            var smellestNode = new Node<T>(default(T));
+
+            // move the smallest node to the end
+            while (currentNode.Next != null)
+            {
+                var result = Comparer<T>.Default.Compare(currentNode.Item, currentNode.Next.Item) < 0;
+
+                if (Comparer<T>.Default.Compare(currentNode.Item, currentNode.Next.Item) < 0) // swap
+                {
+                    swapNode = currentNode.Next;
+                    lastNode.Next = swapNode;
+                    currentNode.Next = swapNode.Next;
+                    swapNode.Next = currentNode;
+                    lastNode = swapNode;
+                    smellestNode = currentNode;
+                }
+                else if (currentNode.Next.Next == null && (Comparer<T>.Default.Compare(currentNode.Item, currentNode.Next.Item) > 0))
+                {
+                    smellestNode = currentNode.Next;
+                    currentNode.Next = null;
+                }
+                else
+                {
+                    lastNode = currentNode;
+                    currentNode = currentNode.Next;
+                }
+            }
+
+            swapNode = emtpyNode.Next;
+            emtpyNode.Next = smellestNode;
+            smellestNode.Next = swapNode;
+
+            return emtpyNode.Next;
+        }
+
         public Node<T> GetLastNode()
         {
             Node<T> lastNode = this;

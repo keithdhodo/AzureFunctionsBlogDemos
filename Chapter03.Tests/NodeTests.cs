@@ -253,5 +253,46 @@ namespace Chapter03.Tests
 
             Assert.AreEqual(100, lastNode.Item);
         }
+
+        [TestMethod]
+        public void Node_MoveSmallestItemToFront_SingleItem()
+        {
+            var head = new Node<int>(50);
+
+            Assert.AreEqual(head, head.MoveSmallestItemToFront());
+        }
+
+        [TestMethod]
+        public void Node_MoveSmallestItemToFront_Simple()
+        {
+            var head = new Node<int>(50);
+            var nextNode = new Node<int>(18);
+            head.Next = nextNode;
+            nextNode.Next = new Node<int>(17);
+
+            var lastNode = head.GetLastNode();
+
+            var smallestModedToFront = head.MoveSmallestItemToFront();
+
+            Assert.AreEqual(smallestModedToFront.Item, lastNode.Item);
+        }
+
+        [TestMethod]
+        public void Node_MoveSmallestItemToFront_OneHundredNodes()
+        {
+            var head = new Node<int>(1);
+            var nextNode = new Node<int>(100);
+            head.Next = nextNode;
+
+            for (int i = 2; i < 100; i++)
+            {
+                nextNode.Next = new Node<int>(100 % i);
+                nextNode = nextNode.Next;
+            }
+
+            var smallestMovedToFront = head.MoveSmallestItemToFront();
+
+            Assert.AreEqual(0, smallestMovedToFront.Item);
+        }
     }
 }
