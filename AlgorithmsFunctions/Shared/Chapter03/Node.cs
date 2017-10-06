@@ -118,8 +118,6 @@ namespace AlgorithmsFunctions.Shared.Chapter03
             // move the smallest node to the end
             while (currentNode.Next != null)
             {
-                var result = Comparer<T>.Default.Compare(currentNode.Item, currentNode.Next.Item) < 0;
-
                 if (Comparer<T>.Default.Compare(currentNode.Item, currentNode.Next.Item) < 0) // swap
                 {
                     swapNode = currentNode.Next;

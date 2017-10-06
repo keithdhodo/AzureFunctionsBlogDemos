@@ -294,5 +294,20 @@ namespace Chapter03.Tests
 
             Assert.AreEqual(0, smallestMovedToFront.Item);
         }
+
+        [TestMethod]
+        public void Node_MoveSmallestItemToFront_FourItemLargeInSecondNode()
+        {
+            var head = new Node<int>(100);
+            var nextNode = new Node<int>(1);
+            head.Next = nextNode;
+            nextNode.Next = new Node<int>(65);
+            nextNode = nextNode.Next;
+            nextNode.Next = new Node<int>(10000);
+
+            var smallestMovedToFront = head.MoveSmallestItemToFront();
+
+            Assert.AreEqual(1, smallestMovedToFront.Item);
+        }
     }
 }
