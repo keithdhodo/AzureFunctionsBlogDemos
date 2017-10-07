@@ -16,5 +16,12 @@
             public const string Chapter01WeightedQuickUnion = "WeightedQuickUnion";
             public const string Chapter01WeightedQuickUnionWithPathCompression = "WeightedQuickUnionWithPathCompression";
         }
+
+        public class Chapter03
+        {
+            public const string AzureTableStorageChapter03 = "Chapter03";
+            public const string Chapter03CountStringMatches = "CountStringMatches";
+            public const string AzureTableStorageChapter03CountStringMatchesTableName = "Chapter03CountStringMatches";
+        }
     }
 }
