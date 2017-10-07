@@ -63,6 +63,7 @@
     <Compile Include="PrintStatsTests.cs" />
     <Compile Include="CoinFlipTests.cs" />
     <Compile Include="ScratchPadTests.cs" />
+    <Compile Include="StringSearchTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
