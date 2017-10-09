@@ -24,5 +24,19 @@ namespace Chapter03.Tests
 
             Assert.AreEqual(2, new StringSearch().CountMatches(pattern, searchString));
         }
+
+        [TestMethod]
+        public void StringSeach_Squeeze_EmptyString()
+        {
+            Assert.AreEqual(string.Empty, new StringSearch().Squeeze(string.Empty));
+        }
+
+        [TestMethod]
+        public void StringSeach_Squeeze_ShortStringWithLeadingWhitespace()
+        {
+            var squeezeString = "  random  whitespace  which  will  be squeezed.";
+
+            Assert.AreEqual(" random whitespace which will be squeezed.", new StringSearch().Squeeze(squeezeString));
+        }
     }
 }
