@@ -1,11 +1,13 @@
-﻿namespace AlgorithmsFunctions.Shared.Chapter03
+﻿using System.Collections.Generic;
+
+namespace AlgorithmsFunctions.Shared.Chapter03
 {
     public class StringSearch
     {
         public int CountMatches(string pattern, string searchString)
         {
             int count = 0;
-            
+
             if (pattern.Length > searchString.Length)
             {
                 return 0;
@@ -13,7 +15,7 @@
 
             for (int i = 0; i < searchString.Length; i++)
             {
-                for(int j = 0; j < pattern.Length; j++)
+                for (int j = 0; j < pattern.Length; j++)
                 {
                     if (searchString[i + j] != pattern[j])
                     {
@@ -54,7 +56,43 @@
                 }
             }
 
-            return new string(inputAsArray, 0 , currentElement);
+            return new string(inputAsArray, 0, currentElement);
+        }
+
+        public Dictionary<int, int> FindMatches(string pattern, string searchString)
+        {
+            var positions = new Dictionary<int, int>();
+
+            if (pattern.Length > searchString.Length)
+            {
+                return positions;
+            }
+
+            for (int i = 0; i < searchString.Length; i++)
+            {
+                var startPosition = -1;
+
+                for (int j = 0; j < pattern.Length; j++)
+                {
+                    if (searchString[i + j] == pattern[j] && startPosition == -1)
+                    {
+                        startPosition = i + j;
+                    }
+
+                    if (searchString[i + j] != pattern[j])
+                    {
+                        startPosition = -1;
+                        break;
+                    }
+
+                    if (j == pattern.Length - 1)
+                    {
+                        positions.Add(startPosition, i + j);
+                    }
+                }
+            }
+
+            return positions;
         }
     }
 }
