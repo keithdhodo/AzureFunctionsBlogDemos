@@ -94,5 +94,40 @@ namespace AlgorithmsFunctions.Shared.Chapter03
 
             return positions;
         }
+
+        /// <summary>
+        /// Determines whether the string is a palindrome.
+        /// </summary>
+        public bool IsPalindrome(string input)
+        {
+            int min = 0;
+            int max = input.Length - 1;
+            while (true)
+            {
+                if (min > max)
+                {
+                    return true;
+                }
+                char a = input[min];
+                char b = input[max];
+
+                if (a == ' ')
+                {
+                    a = input[++min];
+                }
+
+                if (b == ' ')
+                {
+                    b = input[--max];
+                }
+
+                if (char.ToLower(a) != char.ToLower(b))
+                {
+                    return false;
+                }
+                min++;
+                max--;
+            }
+        }
     }
 }

@@ -70,5 +70,55 @@ namespace Chapter03.Tests
 
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void StringSearch_Palindrome_Simple()
+        {
+            var hifi = "if i had a hifi";
+            Assert.IsTrue(new StringSearch().IsPalindrome(hifi));
+        }
+
+        [TestMethod]
+        public void StringSearch_Palindrome_Array()
+        {
+            var palindromes = new List<string>()
+            {
+                "civic",
+                "deified",
+                "deleveled",
+                "devoved",
+                "dewed",
+                "Hannah",
+                "kayak",
+                "level",
+                "madam",
+                "racecar",
+                "radar",
+                "redder",
+                "refer",
+                "repaper",
+                "reviver",
+                "rotator",
+                "rotor",
+                "sagas",
+                "solos",
+                "sexes",
+                "stats",
+                "tenet"};
+
+            var stringSearch = new StringSearch();
+
+            foreach(var palindrome in palindromes)
+            {
+                Assert.IsTrue(stringSearch.IsPalindrome(palindrome));
+            }
+        }
+
+        [TestMethod]
+        public void StringSearch_Palindrome_Negative()
+        {
+            var hifi = "this is not a palindrome";
+            Assert.IsFalse(new StringSearch().IsPalindrome(hifi));
+        }
     }
 }
