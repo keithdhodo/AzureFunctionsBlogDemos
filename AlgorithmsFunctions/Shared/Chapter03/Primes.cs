@@ -8,30 +8,34 @@ namespace AlgorithmsFunctions.Shared.Chapter03
         public List<int> FindPrimes(int input)
         {
             var returnList = new List<int>();
-            bool[] boolArray = new bool[input];
-
-            for (int i = 2; i < input; i++)
+            
+            if (input > 1)
             {
-                boolArray[i] = true;
-            }
+                bool[] boolArray = new bool[input];
 
-            for (int i = 2; i < input; i++)
-            {
-                // easier for readability; granted could just use boolArray[i]
-                if (boolArray[i] != false)
+                for (int i = 2; i < input; i++)
                 {
-                    for (int j = i; j * i < input && j * i < int.MaxValue && j * i > 0; j++)
+                    boolArray[i] = true;
+                }
+
+                for (int i = 2; i < input; i++)
+                {
+                    // easier for readability; granted could just use boolArray[i]
+                    if (boolArray[i])
                     {
-                        boolArray[i * j] = false;
+                        for (int j = i; j * i < input && j * i < int.MaxValue && j * i > 0; j++)
+                        {
+                            boolArray[i * j] = false;
+                        }
                     }
                 }
-            }
 
-            for (int i = 0; i < input; i++)
-            {
-                if (boolArray[i])
+                for (int i = 0; i < input; i++)
                 {
-                    returnList.Add(i);
+                    if (boolArray[i])
+                    {
+                        returnList.Add(i);
+                    }
                 }
             }
 
